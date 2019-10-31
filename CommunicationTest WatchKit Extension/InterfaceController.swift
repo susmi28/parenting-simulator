@@ -111,13 +111,12 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     @IBAction func feedButtonPressed() {
         print("Feed button pressed")
         if WCSession.default.isReachable {
-            self.messageLabel.setText("Feeding the Pokemon")
+            self.messageLabel.setText("Sending msg to Phone")
             WCSession.default.sendMessage(
-                ["Message" : "Feeding the Pokemon"],
+                ["Message" : "Feeding the pokemon"],
                 replyHandler: {
                     (_ replyMessage: [String: Any]) in
             }, errorHandler: { (error) in
-                //@TODO: What do if you get an error
                 print("Error while sending message: \(error)")
                 self.messageLabel.setText("Error sending message")
             })
@@ -130,6 +129,22 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     
     @IBAction func hibernateButtonPressed() {
         print("Hibernate button pressed")
+        if WCSession.default.isReachable {
+            self.messageLabel.setText("Sending msg to Phone")
+            WCSession.default.sendMessage(
+                ["Message" : "Pokemon is hibernating"],
+                replyHandler: {
+                    (_ replyMessage: [String: Any]) in
+            }, errorHandler: { (error) in
+                print("Error while sending message: \(error)")
+                self.messageLabel.setText("Error sending message")
+            })
+        }
+        else {
+            print("Phone is not reachable")
+            self.messageLabel.setText("Cannot reach phone")
+        }
     }
     
 }
+
