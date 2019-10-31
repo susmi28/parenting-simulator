@@ -37,12 +37,9 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
     // 3. Get messages from PHONE
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         print("WATCH: Got message from Phone")
-        // Message from phone comes in this format: ["course":"MADT"]
-        let messageBody = message["course"] as! String
+        let messageBody = message["Message"] as! String
         messageLabel.setText(messageBody)
     }
-    
-
 
     
     // MARK: WatchKit Interface Controller Functions
@@ -81,7 +78,7 @@ class InterfaceController: WKInterfaceController, WCSessionDelegate {
         
         if WCSession.default.isReachable {
             print("Attempting to send message to phone")
-            self.messageLabel.setText("Sending msg to watch")
+            self.messageLabel.setText("Sending msg to Phone")
             WCSession.default.sendMessage(
                 ["name" : "Pritesh"],
                 replyHandler: {
