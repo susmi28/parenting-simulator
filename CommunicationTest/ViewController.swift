@@ -28,6 +28,12 @@ class ViewController: UIViewController, WCSessionDelegate  {
         //@TODO
     }
     
+    @IBOutlet weak var hungerLabel: UILabel!    
+    @IBOutlet weak var healthLabel: UILabel!
+    
+    var Hunger:Int = 0
+    var Health:Int = 100
+    
     // MARK: Receive messages from Watch
     // -----------------------------------
     
@@ -103,7 +109,7 @@ class ViewController: UIViewController, WCSessionDelegate  {
     @IBAction func pokemonButtonPressed(_ sender: Any) {
         print("You pressed the pokemon button")
         if (WCSession.default.isReachable == true) {
-            let message = ["Message":"You have selected Pokemon"] as [String : Any]
+            let message = ["Message":"Pokemon is selected "] as [String : Any]
             
             // Send the message
             WCSession.default.sendMessage(message, replyHandler:nil)
@@ -112,7 +118,7 @@ class ViewController: UIViewController, WCSessionDelegate  {
     @IBAction func caterpieButtonPressed(_ sender: Any) {
         print("You pressed the caterpie button")
         if (WCSession.default.isReachable == true) {
-            let message = ["Message":"You have selected caterpie"] as [String : Any]
+            let message = ["Message":"caterpie is selected"] as [String : Any]
             
             // Send the message
             WCSession.default.sendMessage(message, replyHandler:nil)
